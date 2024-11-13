@@ -6,7 +6,10 @@ class ConstThemeData {
   static const double headMediumFontSize = 20;
   static const double bodyFontSize = 18.0;
   static const double bodyMediumFontSize = 22.0;
+  static const double bodySmallFontSize = 16;
   static const Color colorGreen = Color(0xff8DB646);
+  static const Color colorBlack = Color(0xff1a1a1a);
+  static const Color colorGrey = Color(0xff616161);
   static FontWeight? headFontWeight = FontWeight.normal;
   static ThemeData themeDataLight = ThemeData(
       appBarTheme: AppBarTheme(
@@ -33,6 +36,10 @@ class ConstThemeData {
         bodyMedium: TextStyle(
           color: Colors.black,
           fontSize: bodyMediumFontSize,
+        ),
+        bodySmall: TextStyle(
+          color: Colors.black,
+          fontSize: ConstThemeData.bodySmallFontSize,
         )
       ),
       drawerTheme: DrawerThemeData(backgroundColor: Colors.white)
@@ -69,7 +76,11 @@ class ConstThemeData {
           bodyMedium: TextStyle(
             color: Colors.white,
             fontSize: bodyMediumFontSize,
-          )
+          ),
+        bodySmall: TextStyle(
+          color: Colors.white,
+          fontSize: ConstThemeData.bodySmallFontSize,
+        )
       ),
       drawerTheme: DrawerThemeData(backgroundColor: Color(0xff1a1a1a))
   );

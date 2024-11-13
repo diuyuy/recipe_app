@@ -9,5 +9,13 @@ class ConstRecipePageData {
   ];
 
   static const String nutrition = "Nutrition";
-
+  static const String nutritionSubtitle = '(Percentage of Daily Value)';
+  static const List<String> circularLabel = [
+    'Calories',
+    'Carbs',
+    'Protein',
+    'Fats',
+    'Sat Fat',
+    'Sodium'
+   ];
 }
