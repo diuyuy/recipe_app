@@ -1,0 +1,47 @@
+[
+  {
+    "name": "돈까스",
+    "calories": "600",
+    "carbohydratesG": "50",
+    "proteinG": "25",
+    "fatG": "30",
+    "saturatedFatG": "10",
+    "sodiumMg": "800"
+  },
+  {
+    "name": "우동",
+    "calories": "525",
+    "carbohydratesG": "98",
+    "proteinG": "12",
+    "fatG": "1.5",
+    "saturatedFatG": "0.3",
+    "sodiumMg": "1800"
+  },
+  {
+    "name": "스시",
+    "calories": "400",
+    "carbohydratesG": "55",
+    "proteinG": "15",
+    "fatG": "8",
+    "saturatedFatG": "2",
+    "sodiumMg": "700"
+  },
+  {
+    "name": "규동",
+    "calories": "650",
+    "carbohydratesG": "85",
+    "proteinG": "20",
+    "fatG": "18",
+    "saturatedFatG": "6",
+    "sodiumMg": "1200"
+  },
+  {
+    "name": "라멘",
+    "calories": "700",
+    "carbohydratesG": "60",
+    "proteinG": "25",
+    "fatG": "28",
+    "saturatedFatG": "12",
+    "sodiumMg": "2000"
+  }
+]
