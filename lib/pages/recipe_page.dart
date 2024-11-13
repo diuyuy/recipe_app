@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:recipe_app/controller/home_page_controller.dart';
+import 'package:recipe_app/controller/recipe_page_controller.dart';
 import 'package:recipe_app/core/const_recipe_page_data.dart';
 import 'package:recipe_app/data/food_data.dart';
+import 'package:recipe_app/data/food_recipe_data.dart';
 import 'package:recipe_app/pages/widgets/my_circular_progress_indicator.dart';
 
 class RecipePage extends StatelessWidget {
@@ -11,16 +13,20 @@ class RecipePage extends StatelessWidget {
       {super.key,
       required this.img,
       required this.name,
-      required this.foodData});
+      required this.foodData,
+      required this.foodRecipeData
+      });
 
   final String img;
   final String name;
   final FoodData foodData;
+  final FoodRecipeData foodRecipeData;
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final controller = Get.find<HomePageController>();
+    final controller = Get.put<RecipePageController>(RecipePageController());
+    controller.setNutritionRatio(foodData);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,7 +34,10 @@ class RecipePage extends StatelessWidget {
           icon: Icon(Icons.arrow_back_outlined),
         ),
         centerTitle: false,
-        title: Text(name, style: Theme.of(context).textTheme.headlineLarge),
+        title: Text(
+          name,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -53,104 +62,70 @@ class RecipePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.calories,
-                        ConstRecipePageData.rda[0],
+                ...[for (int i = 0; i < 3; i++) i].map((index) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      MyCircularProgressIndicator(
+                        ratio: controller.nutritionRatio[index],
                       ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[0],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.carbohydratesG,
-                        ConstRecipePageData.rda[1],
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: Theme.of(context).textTheme.bodySmall,
+                          children: [
+                            TextSpan(
+                              text:
+                              '${ConstRecipePageData.circularLabel[index]}\n',
+                            ),
+                            TextSpan(
+                              text: ' ${controller.getStringRatio(index)}%',
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[1],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.proteinG,
-                        ConstRecipePageData.rda[2],
-                      ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[2],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
               ],
             ),
             const Gap(20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.fatG,
-                        ConstRecipePageData.rda[3],
+                ...[for (int i = 3; i < 6; i++) i].map((index) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      MyCircularProgressIndicator(
+                        ratio: controller.nutritionRatio[index],
                       ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[3],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.saturatedFatG,
-                        ConstRecipePageData.rda[4],
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: Theme.of(context).textTheme.bodySmall,
+                          children: [
+                            TextSpan(
+                              text:
+                                  '${ConstRecipePageData.circularLabel[index]}\n',
+                            ),
+                            TextSpan(
+                              text: '  ${controller.getStringRatio(index)}%',
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[4],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    MyCircularProgressIndicator(
-                      ratio: controller.getRatio(
-                        foodData.sodiumMg,
-                        ConstRecipePageData.rda[5],
-                      ),
-                    ),
-                    Text(
-                      ConstRecipePageData.circularLabel[5],
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
               ],
-            )
+            ),
+            const Gap(20),
+            Text(
+              ConstRecipePageData.steps,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ],
         ),
       ),

@@ -89,6 +89,7 @@ class HomePage extends StatelessWidget {
                 img: controller.recipeList[index].img,
                 name: controller.recipeList[index].name,
                 foodData: controller.foodList[index],
+                foodRecipeData: controller.foodRecipeList[index],
               )),
               child: MyContainer(
                   img: controller.recipeList[index].img,

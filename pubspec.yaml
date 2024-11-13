@@ -70,6 +70,7 @@ flutter:
   assets:
     - assets/img/
     - lib/rda.json
+    - lib/food_recipe.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -70,7 +70,7 @@ class ConstThemeData {
           fontSize: ConstThemeData.headMediumFontSize,
         ),
         bodyLarge: GoogleFonts.nanumGothic(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: ConstThemeData.bodyFontSize,
             fontWeight: ConstThemeData.bodyFontWeight),
           bodyMedium: TextStyle(
